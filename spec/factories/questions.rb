@@ -1,6 +1,12 @@
 FactoryBot.define do
   factory :question do
-    title
-    body "Никак не могу понять, сколько будет 2+2, помогите с решением проблемы!"
+    title {"MyString"}
+    body {"MyText"}
   end
+    
+  factory :invalid_question, class: "Question" do
+    title  { nil }
+    body  { nil }
+  end
+
 end

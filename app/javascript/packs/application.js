@@ -11,3 +11,7 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+//= requery jquery3
+//= requery popper
+//= requery bootstrap
+

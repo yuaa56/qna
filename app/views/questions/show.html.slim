@@ -1,0 +1,34 @@
+
+doctype html
+html
+  head
+    title Текущий вопрос и ответы
+   
+  body
+    h4 Текущий вопрос и ответы
+
+    = yield
+    h5 = "#{@question.title}   #{@question.body}"
+    .row 
+      .col-md-3
+
+        =>link_to "Создать ответ", new_question_answer_path(@question), 
+           class: "btn btn-primary"  
+        = link_to "Возврат", questions_path, 
+            class: "cancel_form_link btn btn-default right_btn btn btn-primary"
+
+
+    - unless @question.answers.empty?
+      table
+        - for answer in @question.answers do
+          th  =link_to "Исправить", edit_answer_path(answer)
+
+          th  =link_to "Показать", answer_path(answer)
+          th  =link_to "Удалить", answer_path(answer), method: :delete, data: { confirm: "Удалить?" }
+
+
+          tr
+            td colspan=3 = answer.body
+    - else
+      p Список ответов пуст
+
