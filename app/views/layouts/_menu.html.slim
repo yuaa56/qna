@@ -1,0 +1,9 @@
+.navbar
+  .container-fluid.container-navigation
+    - if current_user.present?  
+      => current_user.email
+      =link_to "Выход", destroy_user_session_path, class: "nav-item btn btn-primary", method: :delete, data: { confirm: "Завершить?" }
+    - else
+        =>link_to "Регистрация", new_user_registration_path, class: "btn btn-primary" 
+        =>link_to "Войти", new_user_session_path, class: "nav-item btn btn-primary" 
+    

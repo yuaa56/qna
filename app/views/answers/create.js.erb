@@ -1,0 +1,12 @@
+<% if @answer.errors.present? %>
+    <% @answer.errors.fuill_messages.each do |messages|  %>
+     <%!--  $('#answer_body').after('<%= j message %>'); --%>
+        $('.answer-errors').HTML('<%= j message %>');
+    <% end %>
+<% else %>
+    var tabl = document.querySelector('.answers_table');
+    var last_row = document.createElement('tr');
+    last_row.innerHTML = "<%= j render 'questions/answer_row', answer: @answer %>";
+    tabl.appendChild(last_row);
+    <% $('#answer_body').val('');
+<% end %>

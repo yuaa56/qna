@@ -11,3 +11,12 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+//= requery jquery3
+//= requery popper
+//= requery bootstrap
+
+document.addEventListener("turbolinks:load", function() {
+    document.querySelector('.aaa').onclick = function() {
+        document.querySelector('.answers_container').style.display = 'block';
+    }
+  });

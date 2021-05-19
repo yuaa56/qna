@@ -1,0 +1,6 @@
+
+tr
+  td = link_to "Исправить", edit_answer_path(answer)
+  td = link_to "Показать", answer_path(answer)
+  td = link_to "Удалить", answer_path(answer), method: :delete, data: { confirm: "Удалить?" }
+  td = answer.body

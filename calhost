@@ -1,0 +1,71 @@
+<table border="1">
+  <caption>Список баз данных</caption>
+  <tr>
+    <th align="center">Имя</th>
+    <th align="center">Владелец</th>
+    <th align="center">Кодировка</th>
+    <th align="center">LC_COLLATE</th>
+    <th align="center">LC_CTYPE</th>
+    <th align="center">Права доступа</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">myapp_development</td>
+    <td align="left">yuaa</td>
+    <td align="left">UTF8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">&nbsp; </td>
+  </tr>
+  <tr valign="top">
+    <td align="left">myapp_test</td>
+    <td align="left">yuaa</td>
+    <td align="left">UTF8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">&nbsp; </td>
+  </tr>
+  <tr valign="top">
+    <td align="left">postgres</td>
+    <td align="left">postgres</td>
+    <td align="left">UTF8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">&nbsp; </td>
+  </tr>
+  <tr valign="top">
+    <td align="left">qn_development</td>
+    <td align="left">yuaa</td>
+    <td align="left">UTF8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">&nbsp; </td>
+  </tr>
+  <tr valign="top">
+    <td align="left">qn_test</td>
+    <td align="left">yuaa</td>
+    <td align="left">UTF8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">&nbsp; </td>
+  </tr>
+  <tr valign="top">
+    <td align="left">template0</td>
+    <td align="left">postgres</td>
+    <td align="left">UTF8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">=c/postgres<br />
+postgres=CTc/postgres</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">template1</td>
+    <td align="left">postgres</td>
+    <td align="left">UTF8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">ru_RU.UTF-8</td>
+    <td align="left">=c/postgres<br />
+postgres=CTc/postgres</td>
+  </tr>
+</table>
+<p>(7 строк)<br />
+</p>

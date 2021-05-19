@@ -1,0 +1,12 @@
+.navbar
+  .container-fluid.container-navigation
+    - if current_user.present?
+        .navbar-text.navbar-right
+            =>link_to "Log out", destroy_user_session_path, class: "nav-item btn btn-primary", method: :delete, data: { confirm: "Завершить?" }
+        .navbar-text.navbar-left
+            = current_user.email
+    - else
+        .nav-item
+          =>link_to "Sign up", new_user_registration_path, class: "btn btn-primary" 
+        .nav-item
+          =>link_to "Log in", new_user_session_path, class: "nav-item btn btn-primary" 
