@@ -1,0 +1,26 @@
+    title Список вопросов
+    h4 Список вопросов 
+
+    .row 
+      .col-md-0
+        =>link_to "Создать вопрос", new_question_path, 
+          class: "btn btn-primary newQuestionLink"  
+        =link_to "Выйти из программы","https://www.google.com/" , 
+        class: "cancel_form_link btn btn-default right_btn btn btn-primary"
+
+    - unless @questions.empty?
+      table
+        - for question in @questions do
+          -if (user_signed_in?) && (current_user.id == question.user_id)
+            th  =link_to "Исправить", edit_question_path(question)
+          th  =link_to "Показать", question_path(question)
+          -if (user_signed_in?) && (current_user.id == question.user_id) 
+            th  =link_to "Удалить", question_path(question), method: :delete, data: { confirm: "Удалить?" }
+
+
+          tr
+            td = question.title
+            td colspan=2 = question.body
+    - else
+      p Список вопросов пуст
+

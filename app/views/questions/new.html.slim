@@ -1,21 +1,6 @@
-doctype html
-html
-  head
-  
-    title Список вопросов
-   
-  body
 
-h1 Новый вопрос
-   
 
-doctype html
-html
-  head
-
-    title Создание вопроса
-   
-  body
+title Создание вопроса
 
 h4 Создание вопроса
    
@@ -34,11 +19,15 @@ div.row
         .col-md-6
           =f.text_field :body 
       
+      .row.col-md-2 Attachments:
+      .row
+        .col-md-0
+          = f.fields_for :attachments do |a|
+            = render 'attachment_fields', f: a
+        .col-md-10
+          = link_to_add_association "Добавить", f, :attachments 
       .row 
-        .col-md-3
-      
+        .col-md-0
           =>f.submit "Запомнить", class: "btn btn-primary"
-            /.col-md-4
           = link_to "Отмена", questions_path,
            class: "cancel_form_link btn btn-default right_btn btn btn-primary"
-            / pull-right

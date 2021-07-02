@@ -1,0 +1,25 @@
+- email = comment.user.email
+
+.flex_row
+  .comment_element => email
+  .comment_element => comment.strComment
+  
+  -if current_user && (current_user.id == comment.user_id)
+    .comment_element => link_to "Удалить" , comment_path(id: comment.id), method: :delete, data: { confirm: "Удалить?", comment_udal_id: "#{comment.id}" },  id: "del-comment-#{comment.id }", class: 'del-comment-link' 
+    .comment_element
+      a href="#" class='edit-comment-link' data-comment-id="#{comment.id}" Редактировать
+   
+      
+      =form_for(comment, url: comment_path(id: comment.id),  method: :patch, html: { id: "edit-comment-#{comment.id }", class: "comment_edit" }) do |f| 
+        .row
+          .col-md-0
+            =f.label(:strComment, "Комментарий")
+            =f.text_area :strComment 
+        .row
+          .col-md-0
+            =>f.submit "Сохранить", class: "comment_btn_#{comment.id} btn btn-primary"
+            = link_to "Отмена", '', class: "cancel_form_link  btn-primary right_btn btn btn-default"
+
+          /.row.row_comment  style = "display: inline-block; width: 900px"
+
+   

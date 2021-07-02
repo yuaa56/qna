@@ -1,0 +1,9 @@
+.row
+.stroka_faila
+  .nested-fields
+    .field
+      .row
+      .col-md-1 => f.label :file
+      .col-md-2 => link_to_remove_association 'Удалить', f
+      .col-md-4 => f.file_field  :file 
+      .col-md-4 => f.text_field  :filet, value: f.object.file.identifier

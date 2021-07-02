@@ -16,7 +16,7 @@ gem 'bootstrap-sass'
 
 gem 'will_paginate', '>= 3.0.7'
 gem 'bootstrap-will_paginate', '>= 0.0.10'
-gem 'carrierwave',             '0.10.0'
+gem 'carrierwave'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -80,4 +80,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise'
-
+gem 'remotipart'
+#gem 'simple_form'
+gem "cocoon", "1.2.15"
+#gem "nested_form"
+gem "rails-ujs"
+gem "responders"
+gem 'skim'
+# gem 'gon'
+# gem 'rabl-rails'

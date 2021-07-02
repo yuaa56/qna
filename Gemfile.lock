@@ -93,7 +93,12 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
     childprocess (3.0.0)
+    cocoon (1.2.15)
     coderay (1.1.3)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
     database_cleaner (2.0.1)
@@ -217,6 +222,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails-ujs (0.1.0)
+      railties (>= 3.1)
     railties (6.1.3.1)
       actionpack (= 6.1.3.1)
       activesupport (= 6.1.3.1)
@@ -228,6 +235,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
+    remotipart (1.4.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -267,6 +275,11 @@ GEM
     semantic_range (3.0.0)
     shoulda-matchers (4.5.1)
       activesupport (>= 4.2.0)
+    skim (0.11.0)
+      coffee-script
+      coffee-script-source (>= 1.2.0)
+      slim (>= 3.0)
+      sprockets (>= 2.0, < 5.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -335,7 +348,8 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   capybara-webkit
-  carrierwave (= 0.10.0)
+  carrierwave
+  cocoon (= 1.2.15)
   database_cleaner
   devise
   dotenv-rails
@@ -350,9 +364,13 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.1.3, >= 6.1.3.1)
   rails-controller-testing
+  rails-ujs
+  remotipart
+  responders
   rspec-rails
   sass-rails (>= 6)
   shoulda-matchers
+  skim
   slim-rails
   spring
   turbolinks (~> 5)

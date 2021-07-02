@@ -1,12 +1,14 @@
+ console.log("<%= params['id'] %>")
 <% if @answer.errors.present? %>
-    <% @answer.errors.fuill_messages.each do |messages|  %>
-     <%!--  $('#answer_body').after('<%= j message %>'); --%>
-        $('.answer-errors').HTML('<%= j message %>');
+    <% @answer.errors.full_messages.each do |message|  %>
+
+        $('.answer-errors').innerHTML ='<%= j message %>';
     <% end %>
 <% else %>
     var tabl = document.querySelector('.answers_table');
     var last_row = document.createElement('tr');
     last_row.innerHTML = "<%= j render 'questions/answer_row', answer: @answer %>";
     tabl.appendChild(last_row);
-    <% $('#answer_body').val('');
+    <% $('#answer_body').val(''); %>
+    <% $('#answer_body').val(false); %>
 <% end %>

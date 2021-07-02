@@ -1,16 +1,56 @@
     title Текущий вопрос и ответы
     h4 Текущий вопрос и ответы
 
+    - attachments =@attachments
+
+
     h5 = "#{@question.title}   #{@question.body}"
+    .answer-errors
+    p Attachments:
+    ul
+      - @question.attachments.each do |a|
+        li= link_to a.file.identifier, a.file.url
+        /li= a.file.file.filename
+        /li= link_to a.file.file.filename, a.file.url
+        
     .row 
       .col-md-3
 
         = link_to "Возврат", questions_path, 
             class: "cancel_form_link btn btn-default right_btn btn btn-primary"
 
+    - unless @question.comments.empty?
+      p Комментарии:
+      .comments_block
+        - for comment in @question.comments do
+          - if comment.persisted?
+            = render 'comment_row', comment: comment
+    - else
+      p Список комментариев пуст
+
+    br
+    br
+    -if user_signed_in?       
+      button.btn.btn-primary.new_comment Создать комментарий
+      .comment_container
+        =form_for(@comment, url: question_comments_path(@comment.commentable),  method: :post) do |f| 
+      
+          .row
+            .col-md-2
+              =>f.label(:strComment, 'Комментарий') 
+          .comment-errors
+              =f.text_field :strComment 
+          .row
+            .col-md-2
+              =>f.submit "Запомнить", class: "btn btn-primary"
+              = link_to "Отмена", '',
+               class: "cancel_form_link btn btn-default right_btn btn btn-primary"
+
+    br
     - unless @question.answers.empty?
-      table.answers_table
-        - for answer in @question.answers do
+      p Ответы:
+      table.answers_table 
+        - for answer in @question.answers.order(best: :desc) do
           = render 'answer_row', answer: answer
     - else
       p Список ответов пуст
@@ -19,30 +59,40 @@
     br
 
       /=>link_to "Создать ответ", new_question_answer_path(@question), 
-           class: "btn btn-primary"  
+           class: "btn btn-primary"  , id: "aaa"
        /(style="display:none")
-    
-    /=>link_to "Создать ответ", '', 
-           class: "btn btn-primary ", id: "aaa"
-    button.btn.btn-primary.aaa Создать ответ
-    .answers_container
-       
-      =form_for(@answer, url: question_answers_path(@answer.question, format: :js),  method: :post, remote: true) do |f| 
-    
-        .row
-          .col-md-2
-            =f.label(:body, 'Ответ') 
-          .col-md-3
+    -if user_signed_in?       
+      button.btn.btn-primary.aaa Создать ответ
+      .answers_container
+        - remote_sign = @question.answers.count > 0 ? true : false
+        - format_sign = @question.answers.count > 0 ? :json : :html
+        =form_for(@answer, url: question_answers_path(@answer.question, format: format_sign),  method: :post, remote: remote_sign) do |f| 
+      
+          .row
+            .col-md-2
+              =>f.label(:body, 'Ответ') 
           .answer-errors
-           =f.text_field :body 
-              
-        .row 
-          .col-md-3
-            =>f.submit "Запомнить", class: "btn btn-primary"
-            = link_to "Отмена", '',
-           class: "cancel_form_link btn btn-default right_btn btn btn-primary"
+            
+              =f.text_field :body 
+          .row
+            .col-md-2
+              =>f.label(:best, "Лучший")
+          
+              =>f.check_box(:best, {}, "true", "false")
+          .row.col-md-2 Attachments:
+          br
+          .row
+            .col-md-0
+              = f.fields_for :attachments do |a|
+                = render 'attachment_fields', f: a
+            .col-md-10= link_to_add_association "Добавить", f, :attachments 
+          
+          .row
+            .col-md-2
+              =>f.submit "Запомнить", class: "btn btn-primary"
+              = link_to "Отмена", '',
+               class: "cancel_form_link btn btn-default right_btn btn btn-primary"
 
 
-              
 
 

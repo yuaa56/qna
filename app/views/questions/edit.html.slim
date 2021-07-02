@@ -1,17 +1,12 @@
-doctype html
-html
-  head
 
-    title Редактировать вопрос
-   
-  body
+title Редактировать вопрос
 
 h4 Редактировать вопрос
    
 
 div.row
   div.col-md-6.col-md-offset-3
-    =form_for(@question,  method: :patch) do |f| 
+    =form_for(@question, method: :patch) do |f| 
       .row
         .col-md-2
           =>f.label :Заголовок
@@ -19,12 +14,20 @@ div.row
           =f.text_field :title
       .row
         .col-md-2
-          =f.label :Вопрос 
+          =f.label :Вопрос
         .col-md-6
           =f.text_field :body 
+
+      .row.col-md-2 Attachments:
+      .row
+        .col-md-0
+          = f.fields_for :attachments do |a|
+            = render 'attachment_field_edit', f: a
+        .col-md-10
+          = link_to_add_association "Добавить", f, :attachments 
       
       .row 
-        .col-md-3
+        .col-md-0
       
           =>f.submit "Запомнить", class: "btn btn-primary"
           = link_to "Отмена", questions_path, 

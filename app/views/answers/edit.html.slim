@@ -4,13 +4,13 @@ div.row
     =form_for(@answer,  method: :patch) do |f| 
       .row
         .col-md-2
-          =f.label :Ответ
+          =f.label(:body, "Ответ")
         .col-md-3
-          =f.text_field :body 
+          =f.text_area :body 
       
       .row 
         .col-md-2
-          =>f.submit "Запомнить", class: "btn-primary btn"
+          =>f.submit "Сохранить", class: "btn-primary btn"
             /.col-md-8
           =link_to "Отмена", question_path(@answer.question), 
             class: "cancel_form_link  btn-primary right_btn btn btn-default"

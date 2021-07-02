@@ -1,0 +1,8 @@
+
+th  =link_to "Показать", question_path(question)
+-if current_user && (current_user.id == question.user_id) 
+  th  =link_to "Удалить", question_path(question), method: :delete, data: { confirm: "Удалить?" }
+  th  =link_to "Исправить", edit_question_path(question)
+tr
+  td = question.title
+  td colspan=2 = question.body

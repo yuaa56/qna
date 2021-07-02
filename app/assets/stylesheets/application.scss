@@ -15,6 +15,24 @@
  @import "bootstrap-sprockets";
  
 
- .answers_container {
-    display: none;
+ .answers_container,.edit_answer, .comment_container, .comment_edit { 
+     display: none;
  }
+ /*
+ .row_comment {
+    display: inline-block; 
+    width: 900px; 
+    justify-content: space-between ;
+ }
+*/
+
+ .flex_row {
+    display: flex;
+    justify-content: start;
+ }
+
+.comment_element {
+    margin-right: 10px;
+}
+ 
+ //flexbox; flex-start ;     display: flex; 

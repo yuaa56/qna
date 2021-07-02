@@ -1,0 +1,8 @@
+<% if @answer.errors.present? %>
+    <% @answer.errors.full_messages.each do |message|  %>
+    document.querySelector(".answer-errors").innerHTML = "<div><%= j message %></div>";
+    <% end %>
+<% else %>
+   var current_row = document.querySelector(".answer_row_<%= @answer.id.to_s %>");
+   current_row.innerHTML = "<%= j render 'questions/answer_row', answer: @answer %>";
+<% end %>

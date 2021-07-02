@@ -1,0 +1,24 @@
+  tr class="answer_row_#{answer.id}"
+    td = answer.body
+    - if answer.best
+      td = 'Лучший'
+    - else
+      td = ' '
+    td = link_to "Показать", answer_path(answer)
+    -if (user_signed_in?)  && (current_user.id == answer.user_id)
+      td = link_to "Удалить", answer_path(answer), method: :delete, data: { confirm: "Удалить?" }
+    - if answer.persisted?  
+      -if (user_signed_in?) && (current_user.id == answer.user_id) 
+        td 
+          =link_to "Редактировать", '', class: 'edit-answer-link', data: {answer_id: answer.id}
+        td.answers_edit
+          =form_for(answer, url: answer_path(answer, format: :js),  method: :patch, remote: true, html: { id: "edit-answer-#{answer.id }" }) do |f| 
+            =f.label(:body, "Ответ")
+            =f.text_area :body 
+            =f.label(:best, "Лучший")
+            =f.check_box(:best, {}, "True", "False")
+
+            =>f.submit "Сохранить", class: "btn btn-primary answer_btn_#{answer.id}"
+            =link_to "Отмена", '', 
+                 class: "cancel_form_link  btn-primary right_btn btn btn-default"
+

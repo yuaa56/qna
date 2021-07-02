@@ -1,0 +1,72 @@
+  tr  class="answer_row_#{answer.id}" 
+    td 
+      ul  style="list-style: none; "
+        - answer.attachments.each do |a|
+          li = link_to a.file.identifier, a.file.url 
+
+    td id = 'answerBody' style = "padding-left: 10px; padding-right: 10px;" = answer.body
+    - if answer.best
+      td  style = "padding-right: 10px;" = 'Лучший'
+    - else
+      td  style = "padding-right: 10px;" = ' '
+    td  style = "padding-right: 10px;" = link_to "Показать", answer_path(answer),  class: 'show-answer-link'
+ 
+    /-if (user_signed_in?)  && (current_user.id == answer.user_id)
+
+    -if (current_user)  && (current_user.id == answer.user_id)
+      td  style = "padding-right: 10px;" = link_to "Удалить", answer_path(answer),  class: 'del-answer-link', method: :delete, remote: true, data: {answer_id: answer.id,  confirm: 'Удалить?' }
+    - if answer.persisted?  
+      /-if (user_signed_in?) && (current_user.id == answer.user_id) 
+
+      -if (current_user) && (current_user.id == answer.user_id) 
+        td  style = "padding-right: 10px;"
+          =link_to "Редактировать", '', class: 'edit-answer-link', data: {answer_id: answer.id}
+        td.answers_edit
+          =form_for(answer, url: answer_path(answer, format: :js),  method: :patch, remote: true, html: { id: "edit-answer-#{answer.id }" }) do |f| 
+            =f.label(:body, "Ответ")
+            =f.text_area :body 
+            =>f.label(:best, "Лучший")
+            =>f.check_box(:best, {}, "true", "false")
+            =>f.label :file 
+            =>f.file_field  :file 
+            .row
+              .col-md-12
+                = link_to_add_association "Добавить", f, :attachments 
+            .row
+            =>f.submit "Сохранить", class: "answer_btn_#{answer.id} btn btn-primary"
+            = link_to "Отмена", '', class: "cancel_form_link  btn-primary right_btn btn btn-default"
+
+  template id="task-template"
+    tr  class="answer_row_#{answer.id} answer_row_temp" 
+      td 
+        ul  style="list-style: none; "
+          - answer.attachments.each do |a|
+            li.answerFile = link_to a.file.identifier, a.file.url 
+
+      td id = 'answerBody' style = "padding-left: 10px; padding-right: 10px;" = answer.body
+      - if answer.best
+        td id ='answerBest'  style = "padding-right: 10px;" = 'Лучший'
+      - else
+        td id ='answerBest'  style = "padding-right: 10px;" = ' '
+      td  style = "padding-right: 10px;" = link_to "Показать", answer_path(answer),  class: 'show-answer-link'
+      -if (current_user)  && (current_user.id == answer.user_id)
+        td  style = "padding-right: 10px;" = link_to "Удалить", answer_path(answer),  class: 'del-answer-link', method: :delete, remote: true, data: {answer_id: answer.id,  confirm: 'Удалить?' }
+      - if answer.persisted?  
+        -if (current_user) && (current_user.id == answer.user_id) 
+          td  style = "padding-right: 10px;"
+            =link_to "Редактировать", '', class: 'edit-answer-link', data: {answer_id: answer.id}
+          td.answers_edit
+            =form_for(answer, url: answer_path(answer, format: :js),  method: :patch, remote: true, html: { id: "edit-answer-#{answer.id }" }) do |f| 
+              =f.label(:body, "Ответ")
+              =f.text_area :body 
+              =>f.label(:best, "Лучший")
+              =>f.check_box(:best, {}, "true", "false")
+              =>f.label :file 
+              =>f.file_field  :file 
+              .row
+                .col-md-12
+                  = link_to_add_association "Добавить", f, :attachments 
+              .row
+              =>f.submit "Сохранить", class: "answer_btn_#{answer.id} btn btn-primary"
+              = link_to "Отмена", '', class: "cancel_form_link  btn-primary right_btn btn btn-default"
+
