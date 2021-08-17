@@ -10,5 +10,16 @@ class Answer < ApplicationRecord
    # accepts_nested_attributes_for :comments, allow_destroy: true
 
     belongs_to :user
+    
+    default_scope { order(best: :desc, created_at: :desc) }
+
+     after_create :new_answers_subscription
+
+
+  private
+
+   def new_answers_subscription
+     NewAnswerJob.perform_later(self)
+   end
 
 end

@@ -1,0 +1,418 @@
+Запускаем наше приложение 
+localhost:3000/questions
+Входим под аутентиф. польз.
+Набираем localhost:3000/oauth/applications
+Нажимаем кнопку New Application
+Введем имя: Test
+Введем Redirect uri: urn:ietf:wg:oauth:2.0:oob (для теста)
+Нажимаем кнопку Submit -создаем приложение
+с данными 
+Application id,(fNId3US_7g-qIqMYii6t9G52wYgzWuEVVHRNeKoTDow)
+rAXgsd255PWri87FbD9aclZ3wQLf4Tgg2yUJ52vttkA
+
+Secret,(FCt5NKU3fwD17gfCW7mZPYPMYkd_c6GmEPkQWOnkuzU )
+J9POu9UQUIJMepBrqwW3fz0vf5xxcWpMxWPd2bQ0Xok 
+
+Callback urls (urn:ietf:wg:oauth:2.0:oob)
+Нажимаем кнопку Autorize
+Получаем
+Authorization code (iUrAZQuv7w5fdCDLHfftzX59FgCUL4SPgtDOpXrDNYk)
+z0o7koeY_gGiFK28nLkPVKx5A1kFxyWTZqkNm2RQpkk
+
+Запускаем плагин RESTClient в FireFox:
+Вводим метод: POST
+URL: http://localhost:3000/oauth/token
+
+Header-CustomHeader-Request Headers-Name: Content-Type
+Value: application/x-www-form-urlencoded
+
+Body:
+client_id=fNId3US_7g-qIqMYii6t9G52wYgzWuEVVHRNeKoTDow&
+client_secret=FCt5NKU3fwD17gfCW7mZPYPMYkd_c6GmEPkQWOnkuzU&
+code=d4a7FjnlOX_OtPFYExziV8G8N8vROe9itSJ3tMJK-VY&
+grant_type=authorization_code&
+redirect_uri=urn:ietf:wg:oauth:2.0:oob 	
+Нажимаем кнопку SEND
+
+Ответ: (получил через POSTMAN)
+ "access_token": "1DXl9MgNkJ6giuKa6A8noZ6hVdywnqCTYs8EEflTlQc",
+    "token_type": "Bearer",
+    "expires_in": 7200,
+    "scope": "read",
+    "created_at": 1625827859
+}
+
+Body:(!!!при вводе не нажимать ENTER -без перевода строки)
+client_id=fNId3US_7g-qIqMYii6t9G52wYgzWuEVVHRNeKoTDow&client_secret=FCt5NKU3fwD17gfCW7mZPYPMYkd_c6GmEPkQWOnkuzU&code=ScmBpBgV6o33vd7cB6klNvJ4PwAQw-_5QMbx1iOtYNg&grant_type=authorization_code&redirect_uri=urn:ietf:wg:oauth:2.0:oob
+Нажимаем кнопку SEND
+
+Ответ: (получил через RESTClient FireFox)
+  "access_token": "XgqgOGgiKO1OjTqXm5FZ5_OXuxJeEtlnEL0U7HG07Ys",
+  "token_type": "Bearer",
+  "expires_in": 7200,
+  "scope": "read",
+  "created_at": 1625829142
+}
+
+///////////////////////////////
+15-07-2021:
+
+client_id=rAXgsd255PWri87FbD9aclZ3wQLf4Tgg2yUJ52vttkA&client_secret=rAXgsd255PWri87FbD9aclZ3wQLf4Tgg2yUJ52vttkA&code=uCWIXCCnSehSb_VfGGFiEzR5pnIok8lWVKfjDGv-pSc&grant_type=authorization_code&redirect_uri=urn:ietf:wg:oauth:2.0:oob
+
+{"access_token":"ajoJITQwLagzSnZpuDXSMbm2bWGzJrysXd_N_iuOePY","token_type":"Bearer","expires_in":7200,"scope":"read","created_at":1626252564}
+
+{
+  "access_token": "ajoJITQwLagzSnZpuDXSMbm2bWGzJrysXd_N_iuOePY",
+  "token_type": "Bearer",
+  "expires_in": 7200,
+  "scope": "read",
+  "created_at": 1626252564
+}
+
+Запрос:
+
+Headers:Header-CustomHeader-Request Headers-Name: Content-Type
+Value: application/x-www-form-urlencoded
+
+method: GET
+http://localhost:3000/api/v1/questions.json?access_token=ajoJITQwLagzSnZpuDXSMbm2bWGzJrysXd_N_iuOePY
+Ответ:
+{
+  "id": 12,
+  "title": "5-ый вопрос",
+  "body": "Пятый вопрос",
+  "created_at": "2021-05-02T13:25:02.274Z",
+  "updated_at": "2021-06-26T14:25:41.032Z",
+  "short_title": "5-ый во...",
+  "answers": [{
+    "id": 590,
+    "body": "11111111111114545",
+    "question_id": 12,
+    "created_at": "2021-06-26T14:04:05.607Z",
+    "updated_at": "2021-06-26T14:04:05.607Z",
+    "user_id": 1,
+    "best": false
+  }, {
+    "id": 593,
+    "body": "22222222222233333",
+    "question_id": 12,
+    "created_at": "2021-06-26T14:21:34.671Z",
+    "updated_at": "2021-06-26T14:21:34.671Z",
+    "user_id": 1,
+    "best": false
+  }, {
+    "id": 594,
+    "body": "7676767",
+    "question_id": 12,
+    "created_at": "2021-06-26T14:25:41.027Z",
+    "updated_at": "2021-06-26T14:25:41.027Z",
+    "user_id": 1,
+    "best": false
+  }, {
+    "id": 94,
+    "body": "2-1 ответllll",
+    "question_id": 12,
+    "created_at": "2021-05-22T09:07:35.965Z",
+    "updated_at": "2021-05-22T09:07:35.965Z",
+    "user_id": 1,
+    "best": false
+  }, {
+    "id": 69,
+    "body": "444444444444",
+    "question_id": 12,
+    "created_at": "2021-05-19T12:21:20.784Z",
+    "updated_at": "2021-05-22T14:16:48.054Z",
+    "user_id": 1,
+    "best": false
+  }, {
+    "id": 70,
+    "body": "marat25533333",
+    "question_id": 12,
+    "created_at": "2021-05-19T12:21:23.475Z",
+    "updated_at": "2021-05-22T13:47:32.406Z",
+    "user_id": 1,
+    "best": false
+  }]
+}, {
+  "id": 24,
+  "title": "2-вопросwrwqrqwr",
+  "body": "Шестой вопрос",
+  "created_at": "2021-05-24T15:10:32.539Z",
+  "updated_at": "2021-06-26T15:31:34.061Z",
+  "short_title": "2-вопро...",
+  "answers": [{
+    "id": 596,
+    "body": "222222222",
+    "question_id": 24,
+    "created_at": "2021-06-26T14:28:40.184Z",
+    "updated_at": "2021-06-26T14:28:40.184Z",
+    "user_id": 1,
+    "best": false
+  }, {
+    "id": 598,
+    "body": "11111111111114545",
+    "question_id": 24,
+    "created_at": "2021-06-26T15:31:34.056Z",
+    "updated_at": "2021-06-26T15:31:34.056Z",
+    "user_id": 1,
+    "best": false
+  }, {
+    "id": 136,
+    "body": "4655",
+    "question_id": 24,
+    "created_at": "2021-05-25T06:36:28.539Z",
+    "updated_at": "2021-05-25T06:36:28.539Z",
+    "user_id": 1,
+    "best": false
+  }]
+}, {
+  "id": 29,
+  "title": "2-вопросwrwqrqwr",
+  "body": "Второй вопрос",
+  "created_at": "2021-05-25T12:02:08.214Z",
+  "updated_at": "2021-06-26T16:16:55.413Z",
+  "short_title": "2-вопро...",
+  "answers": [{
+    "id": 140,
+    "body": "44444444444444",
+    "question_id": 29,
+    "created_at": "2021-05-25T13:37:52.686Z",
+    "updated_at": "2021-05-25T13:37:52.686Z",
+    "user_id": 1,
+    "best": false
+  }]
+}, {
+  "id": 31,
+  "title": "4444444444444444",
+  "body": "777777777777777",
+  "created_at": "2021-05-25T14:02:21.400Z",
+  "updated_at": "2021-06-17T16:06:13.560Z",
+  "short_title": "4444444...",
+  "answers": [{
+    "id": 478,
+    "body": "555555555555555",
+    "question_id": 31,
+    "created_at": "2021-06-16T12:30:31.700Z",
+    "updated_at": "2021-06-16T12:30:31.700Z",
+    "user_id": 1,
+    "best": false
+  }]
+}, {
+  "id": 78,
+  "title": "11111111111111111",
+  "body": "111111111111111111",
+  "created_at": "2021-07-02T10:03:21.668Z",
+  "updated_at": "2021-07-02T10:03:21.668Z",
+  "short_title": "1111111...",
+  "answers": []
+}, {
+  "id": 79,
+  "title": "55555555",
+  "body": "5555555555",
+  "created_at": "2021-07-05T07:24:56.005Z",
+  "updated_at": "2021-07-05T07:24:56.005Z",
+  "short_title": "55555555",
+  "answers": []
+}, {
+  "id": 80,
+  "title": "2222222222222",
+  "body": "2222222222222222",
+  "created_at": "2021-07-05T08:30:19.668Z",
+  "updated_at": "2021-07-05T08:30:19.668Z",
+  "short_title": "2222222...",
+  "answers": []
+}]
+
+
+
+client_id=rAXgsd255PWri87FbD9aclZ3wQLf4Tgg2yUJ52vttkA&client_secret=J9POu9UQUIJMepBrqwW3fz0vf5xxcWpMxWPd2bQ0Xok&code=uCWIXCCnSehSb_VfGGFiEzR5pnIok8lWVKfjDGv-pSc&grant_type=authorization_code&redirect_uri=urn:ietf:wg:oauth:2.0:oob
+
+"access_token": "VuyGKx-hUpmwM7r2Qj_zDY1CmcixRS___0FQM9wUx8g",
+  "token_type": "Bearer",
+  "expires_in": 43200,
+  "scope": "read",
+  "created_at": 1626273388
+}
+
+http://localhost:3000/api/v1/questions/12/answers.json?access_token=VuyGKx-hUpmwM7r2Qj_zDY1CmcixRS___0FQM9wUx8g
+
+[{
+  "id": 590,
+  "body": "11111111111114545",
+  "created_at": "2021-06-26T14:04:05.607Z",
+  "updated_at": "2021-06-26T14:04:05.607Z",
+  "comments": [],
+  "attachments": [{
+    "id": 631,
+    "file": {
+      "url": "/uploads/attachment/file/631/2021-02-02_09-04-31.jpg"
+    },
+    "created_at": "2021-06-26T14:04:05.613Z",
+    "updated_at": "2021-06-26T14:04:05.613Z",
+    "attachmentable_id": 590,
+    "attachmentable_type": "Answer"
+  }, {
+    "id": 632,
+    "file": {
+      "url": "/uploads/attachment/file/632/2021-01-31_06-14-39.jpg"
+    },
+    "created_at": "2021-06-26T14:04:05.619Z",
+    "updated_at": "2021-06-26T14:04:05.619Z",
+    "attachmentable_id": 590,
+    "attachmentable_type": "Answer"
+  }]
+}, {
+  "id": 593,
+  "body": "22222222222233333",
+  "created_at": "2021-06-26T14:21:34.671Z",
+  "updated_at": "2021-06-26T14:21:34.671Z",
+  "comments": [],
+  "attachments": [{
+    "id": 636,
+    "file": {
+      "url": "/uploads/attachment/file/636/2021-02-02_08-23-38.jpg"
+    },
+    "created_at": "2021-06-26T14:21:34.676Z",
+    "updated_at": "2021-06-26T14:21:34.676Z",
+    "attachmentable_id": 593,
+    "attachmentable_type": "Answer"
+  }]
+}, {
+  "id": 594,
+  "body": "7676767",
+  "created_at": "2021-06-26T14:25:41.027Z",
+  "updated_at": "2021-06-26T14:25:41.027Z",
+  "comments": [],
+  "attachments": [{
+    "id": 637,
+    "file": {
+      "url": "/uploads/attachment/file/637/2021-02-02_09-04-31.jpg"
+    },
+    "created_at": "2021-06-26T14:25:41.033Z",
+    "updated_at": "2021-06-26T14:25:41.033Z",
+    "attachmentable_id": 594,
+    "attachmentable_type": "Answer"
+  }, {
+    "id": 638,
+    "file": {
+      "url": "/uploads/attachment/file/638/2021-01-06_19-23-16.jpg"
+    },
+    "created_at": "2021-06-26T14:25:41.039Z",
+    "updated_at": "2021-06-26T14:25:41.039Z",
+    "attachmentable_id": 594,
+    "attachmentable_type": "Answer"
+  }]
+}, {
+  "id": 94,
+  "body": "2-1 ответllll",
+  "created_at": "2021-05-22T09:07:35.965Z",
+  "updated_at": "2021-05-22T09:07:35.965Z",
+  "comments": [],
+  "attachments": [{
+    "id": 625,
+    "file": {
+      "url": "/uploads/attachment/file/625/2021-02-02_09-04-31.jpg"
+    },
+    "created_at": "2021-06-26T13:36:02.510Z",
+    "updated_at": "2021-06-26T13:36:02.510Z",
+    "attachmentable_id": 94,
+    "attachmentable_type": "Answer"
+  }, {
+    "id": 626,
+    "file": {
+      "url": "/uploads/attachment/file/626/2021-02-02_08-23-38.jpg"
+    },
+    "created_at": "2021-06-26T13:36:02.517Z",
+    "updated_at": "2021-06-26T13:36:02.517Z",
+    "attachmentable_id": 94,
+    "attachmentable_type": "Answer"
+  }]
+}, {
+  "id": 69,
+  "body": "444444444444",
+  "created_at": "2021-05-19T12:21:20.784Z",
+  "updated_at": "2021-05-22T14:16:48.054Z",
+  "comments": [],
+  "attachments": [{
+    "id": 627,
+    "file": {
+      "url": "/uploads/attachment/file/627/2021-01-31_06-14-39.jpg"
+    },
+    "created_at": "2021-06-26T13:36:34.373Z",
+    "updated_at": "2021-06-26T13:36:34.373Z",
+    "attachmentable_id": 69,
+    "attachmentable_type": "Answer"
+  }]
+}, {
+  "id": 70,
+  "body": "marat25533333",
+  "created_at": "2021-05-19T12:21:23.475Z",
+  "updated_at": "2021-05-22T13:47:32.406Z",
+  "comments": [],
+  "attachments": [{
+    "id": 628,
+    "file": {
+      "url": "/uploads/attachment/file/628/2021-01-27_06-04-55.jpg"
+    },
+    "created_at": "2021-06-26T13:37:10.482Z",
+    "updated_at": "2021-06-26T13:37:10.482Z",
+    "attachmentable_id": 70,
+    "attachmentable_type": "Answer"
+  }]
+}]
+
+15-07-2021:
+code=74kbMEkpj1qJrQSdGVL4Dtgj1o_1aDLhwgYyjRsJpAA
+
+client_id=rAXgsd255PWri87FbD9aclZ3wQLf4Tgg2yUJ52vttkA&client_secret=J9POu9UQUIJMepBrqwW3fz0vf5xxcWpMxWPd2bQ0Xok&code=74kbMEkpj1qJrQSdGVL4Dtgj1o_1aDLhwgYyjRsJpAA&grant_type=authorization_code&redirect_uri=urn:ietf:wg:oauth:2.0:oob
+
+
+    "access_token": "nXNq89kaltwOYWdH13A2XA5uHkMn3mcCQmyjtI2kD6o",
+    "token_type": "Bearer",
+    "expires_in": 43200,
+    "scope": "read",
+    "created_at": 1626327460
+}
+
+{
+  "id": nil,
+  "title": "13-ый вопрос",
+  "body": "13ый вопрос",
+  "created_at": "",
+  "updated_at": ",
+  "short_title": "" }
+
+
+Создать новый вопрос:
+
+access_token=yYH0FhoXtXwm11FZecWiln4REVnwV-OjqqWl_GsmN7Q
+
+http://localhost:3000/api/v1/questions.json?access_token=yYH0FhoXtXwm11FZecWiln4REVnwV-OjqqWl_GsmN7Q&question[title]=13-ый вопрос&question[body]=13-ый вопрос13-ый вопрос
+
+Ответ:
+{
+    "id": 83,
+    "title": "13-ый вопрос",
+    "body": "13-ый вопрос13-ый вопрос",
+    "created_at": "2021-07-15T07:13:54.516Z",
+    "updated_at": "2021-07-15T07:13:54.516Z",
+    "short_title": "13-ый в...",
+    "answers": []
+}
+
+body-json:
+{"access_token": "yYH0FhoXtXwm11FZecWiln4REVnwV-OjqqWl_GsmN7Q", "question": {"body": "hhhh", "title": "new question"}}
+
+Создать новый ответ для вопроса:
+
+http://localhost:3000/api/v1/questions/12/answers.json?access_token=yYH0FhoXtXwm11FZecWiln4REVnwV-OjqqWl_GsmN7Q&answer[body]=1ответ на 13-ый вопрос
+
+Ответ:
+{
+    "id": 604,
+    "body": "1ответ на 13-ый вопрос\n",
+    "created_at": "2021-07-15T07:34:20.277Z",
+    "updated_at": "2021-07-15T07:34:20.277Z",
+    "comments": [],
+    "attachments": []
+}

@@ -7,7 +7,7 @@ feature 'Create answer', %q{
     I want to be able to ask answers
 } do 
     given(:user) { create(:user) }
-    given(:question) { create(:question)}
+    given(:question) { create(:question) }
     given(:answer) { create(:answer) }
  
   scenario 'Authenticated user creates vaild answer', js: true do
@@ -17,10 +17,12 @@ feature 'Create answer', %q{
       visit question_path(question)
       click_on 'Создать ответ'
       #expect(page).to have_content 'Ответ'
+      #save_and_open_page
 
-      fill_in "answer_body", with: 'text answer text text'
+      # fill_in  'answer_body', :with => 'answer text text' 
+      find('#answer_body', visible: false).set 'text answer text text'
       expect(page).to have_link 'Отмена'
-  
+      # save_and_open_page
       click_on 'Запомнить'
       visit question_path(question)
      
@@ -35,6 +37,7 @@ feature 'Create answer', %q{
     expect(page).to have_link 'Отмена'
     click_on 'Запомнить'
     # save_and_open_page
+    visit question_path(question)
     expect(page).to have_content 'Your answer invalid.'
     visit question_path(question)
 
@@ -44,9 +47,9 @@ feature 'Create answer', %q{
 
   scenario 'Non-authenticated user tryes to create answer' do
       visit question_path(question)
+      # save_and_open_page
       click_on 'Создать ответ'
       visit question_path(question)
-      # save_and_open_page
       expect(page).to_not have_content 'text answer text text'
       # expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end

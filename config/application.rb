@@ -10,10 +10,11 @@ module Qna
   class Application < Rails::Application
     # Use the responders controller from the responders gem
     config.app_generators.scaffold_controller :responders_controller
-    
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.i18n.default_locale = :en
+    #config.hosts << "localhost"
 
     #config.assets.enabled = true
     #config.assets.version = '1.0'
@@ -30,6 +31,10 @@ module Qna
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_cable.allowed_request_origins = ['https://rubyonrails.com', %r{http://ruby.*}]
     config.action_cable.disable_request_forgery_protection = false
+    config.action_mailer.default_url_options = { :host => "localhost" }
+
+    config.active_job.queue_adapter = :sidekiq
+    config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in:  90.minutes }
 
     config.generators do |g|
       g.test_framework :rspec,

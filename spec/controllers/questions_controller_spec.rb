@@ -56,7 +56,7 @@ RSpec.describe QuestionsController, type: :controller do
    describe 'GET #edit' do
     sign_in_user
 
-    let(:question) { create(:question)}
+    let(:question) { create(:question, user_id: @user.id)}
     before {get :edit, params: { id: question }}
     it 'assigns the requested question to @question' do
       expect(assigns(:question)).to eq question
@@ -94,7 +94,7 @@ end
 describe 'PATCH #update'  do
    sign_in_user
 
-   let(:question) { create(:question)}
+   let(:question) { create(:question, user_id: @user.id)}
   context 'with valid attributes' do
    it 'assigns the requested question to @question' do
      patch :update, params: { id: question, question: attributes_for(:question) }
@@ -127,8 +127,9 @@ describe 'PATCH #update'  do
 end
 
 describe 'DELETE #destroy'  do
-   let(:question2) { create(:question, user: @user) }
-   sign_in_user
+  sign_in_user
+  let(:question2) { create(:question, user: @user) }
+   
 
    context "own question" do
       before { question2 }
@@ -140,7 +141,7 @@ describe 'DELETE #destroy'  do
 
       it 'redirect to index view' do
          delete :destroy, params: { id: question }
-         expect(response).to redirect_to questions_path
+         expect(response).to redirect_to root_path
       end
    end
 
@@ -152,7 +153,7 @@ describe 'DELETE #destroy'  do
 
       it "redirects to sign_in view " do
         delete :destroy, params: { id: question }
-        expect(response).to redirect_to questions_path
+        expect(response).to redirect_to root_path
       end
    end
 

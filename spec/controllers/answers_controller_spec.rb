@@ -16,21 +16,8 @@ RSpec.describe AnswersController, type: :controller do
     end
 
     it 'renders show view' do
-     
       expect(response).to render_template :show
     end
-  end
-
-  describe 'GET #new' do
-   sign_in_user
-   before { get :new }
-   it 'assigns a answer to @answer' do
-      expect(assigns(:answer)).to be_a_new(Answer)
-   end
-
-   it 'renders new view' do
-      expect(response).to render_template :new
-   end
   end
 
   describe "DELETE #destroy" do

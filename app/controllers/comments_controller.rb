@@ -5,11 +5,11 @@ class CommentsController < ApplicationController
 
 
     def create
-      if params[:question_id]
+      if params[:commentable] == 'question'
         @question = Question.find_by(id: params[:question_id])
-        @question = Question.find_by(id: params[:commentable_id])
         @comment = @question.comments.new(comment_params)
         @comment.user_id = current_user.id
+        authorize @comment
 
         @comments = @question.comments 
       else
@@ -49,6 +49,7 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize @comment
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
     questionOrAnswer = @comment.commentable
@@ -64,6 +65,7 @@ class CommentsController < ApplicationController
   end
 
     def destroy
+      authorize @comment
       question = @comment.commentable
       if @comment.user_id == current_user.id
         @comment.destroy

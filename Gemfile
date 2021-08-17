@@ -69,10 +69,8 @@ group :test do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  # gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'json_spec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -85,7 +83,31 @@ gem 'remotipart'
 gem "cocoon", "1.2.15"
 #gem "nested_form"
 gem "rails-ujs"
-gem "responders"
+gem 'responders', '> 2.0' 
 gem 'skim'
 # gem 'gon'
 # gem 'rabl-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+#gem 'cancancan'
+gem 'pundit'
+gem 'doorkeeper'
+gem 'active_model_serializers'
+gem 'oj'
+gem 'oj_mimic_json'
+# gem 'delayed_job_active_record'
+# gem 'whenever'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
+# gem 'sidetiq'
+#gem "sidekiq-cron", "~> 1.1"
+gem 'sidekiq-scheduler'
+gem 'mysql2' #, '>=0.4.10'  #папка brew
+gem 'thinking-sphinx'
+
+group :development do
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+end

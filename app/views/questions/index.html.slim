@@ -5,6 +5,8 @@
       .col-md-0
         =>link_to "Создать вопрос", new_question_path, 
           class: "btn btn-primary newQuestionLink"  
+          /if can?(:create, Question)   #CanCan
+          
         =link_to "Выйти из программы","https://www.google.com/" , 
         class: "cancel_form_link btn btn-default right_btn btn btn-primary"
 

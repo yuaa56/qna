@@ -11,6 +11,17 @@ feature 'User sign in', %q{
     scenario 'Registered user try to sign in' do
       
       sign_in(user)
+
+      #visit new_user_session_path
+      #find('#answer_body', visible: false).set 'text answer text text'
+
+      #fill_in 'user_email', with: user.email
+      #fill_in 'user_password', with: user.password
+      #save_and_open_page
+      # click_on 'Войти'
+      #click_on 'Log in'
+  
+
      ## User.create!(email: 'user@test.com', password: '12345678')
     #  visit new_user_session_path
     #  fill_in 'Email', with: user.email
@@ -19,9 +30,11 @@ feature 'User sign in', %q{
     # # fill_in 'Password', with: '12345678'
     #  #save_and_open_page
     #  click_on 'Log in'
-
-       expect(page).to have_content 'Signed in successfully.'
+    #   save_and_open_page
+      expect(page).to have_content 'Signed in successfully.'
+    #  expect(page).to have_content 'Invalid Email or password.'
       expect(current_path).to eq root_path
+    #  expect(current_path).to eq new_user_session_path
     end
 
     scenario 'Non-registered user try to sign in' do

@@ -1,6 +1,7 @@
 require 'rails_helper.rb'
 
 RSpec.configure do |config|
+  Capybara.server = :puma 
   config.include AcceptanceMacros, type: :feature
   config.include ActionController, type: :feature
   config.use_transactional_fixtures = false # !!!изменяем из-за AJAX
