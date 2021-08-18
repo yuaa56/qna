@@ -108,6 +108,7 @@ gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq-scheduler'
 gem 'mysql2' #, '>=0.4.10'  #папка brew
 gem 'thinking-sphinx'
+gem 'therubyracer'
 
 group :development do
   gem 'capistrano', require: false
