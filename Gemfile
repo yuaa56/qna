@@ -10,7 +10,8 @@ gem 'jquery-rails', '>= 4.4.0'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-gem 'autoprefixer-rails', '>= 10.2.4.0'
+#gem 'autoprefixer-rails', '>= 10.2.4.0'
+gem 'mini_racer', platforms: :ruby
 # Добавление bootstrap
 gem 'bootstrap-sass'
 
