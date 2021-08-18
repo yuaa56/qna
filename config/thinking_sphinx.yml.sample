@@ -1,0 +1,193 @@
+# Extended configuration for Thinking Sphinx can be stored in the
+# config/thinking_sphinx.yml file within your application (this file was
+# previously known as config/sphinx.yml in TS v1/v2).
+#
+# Many settings from Sphinx itself can be set here, and they'll flow through to
+# the appropriate section of the generated configuration. However, some are
+# used for Thinking Sphinx behaviour, and so those are documented here first.
+#
+# Configuration is grouped by environment, just like config/database.yml in a
+# standard Rails application.
+
+development:
+  # THINKING SPHINX SETTINGS:
+
+  # Defaults to false. Time values are stored by Sphinx as 32-bit integers, but
+  # this setting allows them to be stored as 64-bit integers instead if you're
+  # dealing with far-future dates.
+  64bit_timestamps: true
+  
+  # Defaults to false. If you're using relative paths in this file, and want
+  # them to be translated to absolute paths in the generated configuration, set
+  # this to true.
+  #
+  # This was added in TS v4.0.0.
+  absolute_paths: true
+
+  # Defaults to 127.0.0.1. Allows you to set the TCP host for Sphinx to a
+  # different address. Don't set this if you want to use UNIX sockets instead.
+  address: 10.0.0.1
+
+  # Defaults to false. If enabled, changes to models with an SQL-backed index
+  # will update attribute values in Sphinx. This is a stop-gap solution (fields
+  # aren't updated), and should only be considered if deltas or real-time
+  # indices aren't an option.
+  #
+  # This functionality was enabled by default in TS v1/v2.
+  attribute_updates: true
+
+  # Defaults to 1000. Real-time index processing (via the `ts:index` and
+  # `ts:rebuild` tasks) loads instances in batches, and by default that's 1000
+  # at a time. You can customise it if you'd like.
+  batch_size: 100
+
+  # Defaults to false. Sphinx defaults to using 32-bit integers for document
+  # ids (its equivalent of primary keys). If you want to use 64-bit integers
+  # instead, set this to true.
+  big_document_ids: true
+
+  # Defaults to "". The Sphinx binaries (searchd, indexer) are presumed to be
+  # in the PATH. If there are situations where this is not the case, please
+  # set bin_path to their full location.
+  bin_path: "/usr/local/bin"
+
+  # Defaults to false. Recent versions of Sphinx added the 'common' section to
+  # configuration files. If you want to use that (and the corresponding options)
+  # you can enable this. Otherwise, settings will end up in their previous
+  # non-common sections in the generated configuration.
+  #
+  # See http://sphinxsearch.com/docs/current.html#confgroup-common
+  common_sphinx_configuration: true
+
+  # Defaults to "RAILS_ROOT/config/RAILS_ENV.sphinx.conf". This is the setting
+  # to define a custom location of the generated Sphinx configuration file.
+  configuration_file: "/srv/www/myapp/shared/sphinx.conf"
+
+  # Defaults to an empty hash. This allows the setting of custom Sphinx
+  # connection options (passed through to the underlying MySQL connection). In
+  # particular, it's used by Flying Sphinx to ensure connections are directed
+  # to the right location.
+  connection_options:
+    address: myserver.cloud
+
+  # Defaults to true. Thinking Sphinx will create distributed indices that
+  # collect all core and delta indices for each model. There's no inherent use
+  # for these at the current time, it's just maintaining long-existing
+  # behaviour.
+  distributed_indices: false
+
+  # Defaults to an empty hash. You can specify settings for all index
+  # definitions this way (this hash is used as part of a
+  # ThinkingSphinx::Index.define call arguments, not within the block itself).
+  index_options:
+    delta: true
+
+  # Defaults to "RAILS_ROOT/db/sphinx/RAILS_ENV". This is where index files are
+  # stored by Sphinx.
+  indices_location: "/srv/www/myapp/shared/indices"
+
+  # By default, Sphinx will return a maximum of 1000 records (and they're
+  # usually paginated by 20 records at a time). You can increase this limit if
+  # you need more data - but keep in mind that the larger this value is, the
+  # slower search queries get.
+  max_matches: 1000
+
+  # Defaults to false. This is useful when using a MySQL database and SQL-backed
+  # indices - MySQL usually isn't fussed about a GROUP BY statement holding all
+  # non-aggregate columns (or even existing), and the speeds improve without it.
+  # You can also use this setting without the question mark.
+  minimal_group_by?: true
+
+  # Defaults to 9306. This is the TCP port Sphinx will run its daemon on. Do not
+  # set this if you wish to use UNIX sockets instead.
+  #
+  # It's useful to set this for your test environment, to ensure you can run
+  # Sphinx in both development and test locally at the same time.
+  #
+  # Previously this setting was 'port' in TS v1/v2.
+  mysql41: 9307
+
+  # Defaults to id. You can use this setting to override the primary key column
+  # for indexed models (perhaps if you're using UUID columns as the actual
+  # primary keys, but have a unique integer column for the sake of Sphinx).
+  primary_key: sphinx_id
+
+  # Defaults to true. Delta indexing output is suppressed in logs (to avoid
+  # extra noise), but can be enabled to assist debugging.
+  quiet_deltas: false
+
+  # Defaults to true. Real-time callbacks (which keep data in your models and
+  # Sphinx in sync) can be disabled if you wish. This is useful when running
+  # tests that involve model data but not Sphinx.
+  real_time_callbacks: false
+
+  # Defaults to false in TS v4.0, and removed from TS v5.0.
+  #
+  # Recent versions of Sphinx ignore the docinfo setting, and this allows
+  # you to not have it in the generated configuration. It is not generated
+  # at all in v5.0.
+  #
+  # This is only available in TS v4.x releases. 
+  skip_docinfo: true
+
+  # Defaults to false. Thinking Sphinx defaults to enforcing a UTC timezone
+  # when processing SQL-backed indices. If you're using a different default
+  # timezone in your database, you probably want to disable this setting.
+  skip_time_zone: true
+
+  # Defaults to nil. You can specify a path for a UNIX socket instead of using
+  # TCP connections, if your Rails app and Sphinx are on the same machine.
+  #
+  # This was added in TS v4.0.0.
+  socket: "/srv/www/myapp/shared/production.sphinx"
+
+  # Defaults to true. Thinking Sphinx presumes data from Sphinx will be encoded
+  # as UTF8. If you're using an old version of Sphinx, you may want to set this
+  # to false to ensure incoming data is translated to UTF8.
+  utf8: false
+
+  # Defaults to 2.2.11. This setting is used by Flying Sphinx as an indicator of
+  # the preferred version of Sphinx. It has no bearing on the behaviour of
+  # Thinking Sphinx.
+  #
+  # The default prior to TS v4.0.0 was 2.1.4.
+  version: 2.2.3
+
+
+
+  # SPHINX DAEMON SETTINGS:
+  # The full list is covered in the Sphinx documentation:
+  # http://sphinxsearch.com/docs/current.html#confgroup-searchd
+  #
+  # Of particular note:
+  # * `log` and `query_log` for setting the paths to the two log files Sphinx
+  #   uses.
+  # * `pid_file` for setting the PID file for the Sphinx daemon.
+  # * `binlog_path` for setting the folder where Sphinx stores its temporary
+  #   change data (which is eventually written to the main index files).
+
+
+
+  # SPHINX INDEXER SETTINGS:
+  # The full list is covered in the Sphinx documentation:
+  # http://sphinxsearch.com/docs/current.html#confgroup-indexer
+
+
+
+  # SPHINX INDEX SETTINGS:
+  # The full list is covered in the Sphinx documentation:
+  # http://sphinxsearch.com/docs/current.html#confgroup-index
+  #
+  # Of particular note:
+  # * `morphology` for setting the language pre-processors.
+  # * `charset_table` for mapping characters to be treated as equal.
+
+
+
+  # SPHINX SOURCE SETTINGS:
+  # The full list is covered in the Sphinx documentation:
+  # http://sphinxsearch.com/docs/current.html#confgroup-source
+  #
+  # Of particular note:
+  # * `mysql_ssl_cert`, `mysql_ssl_key`, `mysql_ssl_ca` for setting MySQL SSL
+  #   connection details (when using SQL-backed indices and a MySQL database).
