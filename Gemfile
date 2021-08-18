@@ -76,7 +76,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+# gem 'dotenv-rails'
+gem 'dotenv'
+# gem 'dotenv-deployment', require: 'dotenv/deployment'
+
 gem 'devise'
 gem 'remotipart'
 #gem 'simple_form'

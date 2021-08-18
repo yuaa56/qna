@@ -483,6 +483,7 @@ DEPENDENCIES
   database_cleaner
   devise
   doorkeeper
+  dotenv
   dotenv-rails
   factory_bot_rails
   jbuilder (~> 2.7)
