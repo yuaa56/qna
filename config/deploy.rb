@@ -4,6 +4,9 @@ lock "~> 3.16.0"
 set :application, "qna"
 set :repo_url, "git@github.com:yuaa56/qna.git"
 
+set :rvm_ruby_version, '2.7.1@qna'
+set :passenger_rvm_ruby_version, '2.7.1@qna'
+
 # Default deploy_to directory is /var/www/my_app_name
 #set :deploy_to, "/var/www/#{application}"
 set :deploy_to, "/home/deployer/qna"
