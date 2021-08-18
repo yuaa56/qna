@@ -10,7 +10,7 @@ gem 'jquery-rails', '>= 4.4.0'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-#gem 'autoprefixer-rails', '>= 10.2.4.0'
+gem 'autoprefixer-rails', '>= 10.2.4.0'
 gem 'mini_racer', platforms: :ruby
 # Добавление bootstrap
 gem 'bootstrap-sass'
@@ -111,7 +111,7 @@ gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq-scheduler'
 gem 'mysql2' #, '>=0.4.10'  #папка brew
 gem 'thinking-sphinx'
-gem 'therubyracer'
+# gem 'therubyracer'
 
 group :development do
   gem 'capistrano', require: false
