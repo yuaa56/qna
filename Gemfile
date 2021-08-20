@@ -38,7 +38,6 @@ gem 'redis-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'capistrano-passenger', require: false
 
  group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -113,6 +112,8 @@ gem 'sidekiq-scheduler'
 gem 'mysql2' #, '>=0.4.10'  #папка brew
 gem 'thinking-sphinx'
 # gem 'therubyracer'
+gem 'unicorn'
+# gem 'capistrano-passenger', require: false
 
 group :development do
   gem 'capistrano', require: false
@@ -120,4 +121,5 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano-sidekiq', require: false
+  gem 'capistrano3-unicorn', require: false
 end
