@@ -5,7 +5,7 @@ set :application, "qna"
 set :repo_url, "git@github.com:yuaa56/qna.git"
 
 set :rvm_ruby_version, '2.7.1@qna'
-set :passenger_rvm_ruby_version, '2.7.1@qna'
+# set :passenger_rvm_ruby_version, '2.7.1@qna'
 
 # Default deploy_to directory is /var/www/my_app_name
 #set :deploy_to, "/var/www/#{application}"
@@ -21,7 +21,7 @@ set :linked_files, %w{config/database.yml config/thinking_sphinx.yml .env}
 #append :linked_dirs, "bin", "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
-set :passenger_roles, :app # This is the default
+# set :passenger_roles, :app # This is the default
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
