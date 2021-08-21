@@ -523,6 +523,7 @@ DEPENDENCIES
   factory_bot_rails
   jbuilder (~> 2.7)
   jquery-rails (>= 4.4.0)
+  json
   json_spec
   launchy
   listen (~> 3.3)
