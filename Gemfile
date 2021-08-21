@@ -114,7 +114,7 @@ gem 'thinking-sphinx'
 # gem 'therubyracer'
 gem 'unicorn'
 # gem 'capistrano-passenger', require: false
-gem 'json'
+gem 'json',  '~>1.8.3'
 
 group :development do
   gem 'capistrano', require: false
